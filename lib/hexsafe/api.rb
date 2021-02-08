@@ -21,7 +21,7 @@ module Hexsafe
     end
 
     def get_txn ticker, tx_hash
-      response = rest_api("GET", "transaction/asset_ticker/#{ticker}/hash/#{tx_hash}", {})
+      response = rest_api("GET", "transaction/asset_ticker/#{ticker.upcase}/hash/#{tx_hash}", {})
     end
 
     def get_txn_ac account_id, start_time, end_time
@@ -102,8 +102,6 @@ module Hexsafe
           req.headers['Content-Type'] = 'application/json'
         end
       end
-      # Rails.logger { response.describe }
-      # response.assert_success!
       JSON.parse(response.body)
   	end
   	
