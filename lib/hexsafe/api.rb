@@ -5,7 +5,7 @@ module Hexsafe
   	def initialize options = {}
   		@mode   = options[:env].upcase rescue nil
   		@key    = options[:key] rescue nil
-  		@secret = options[:secret] rescue nil 			
+  		@secret = options[:secret] rescue nil		
   	end
 
   	def get_accounts
@@ -117,10 +117,12 @@ module Hexsafe
     end
 
     def key
+      return "Empty key" if @key.nil?
       @key ||= @key
     end
 
     def secret
+      return "Empty secret" if @secret.nil?
       @secret ||= @secret
     end
 
@@ -129,7 +131,7 @@ module Hexsafe
       sha256.digest(data.encode('utf-8'))
     end
 
-    def hmac_512 (secret, data)
+    def hmac_512(secret, data)
       OpenSSL::HMAC.digest('sha512',secret, data)
     end
 
